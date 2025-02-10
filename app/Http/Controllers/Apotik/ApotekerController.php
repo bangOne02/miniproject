@@ -97,14 +97,9 @@ class ApotekerController extends Controller
 
     public function listPrescriptions()
     {
-        // $prescriptions = ResepDokter::all();
-        // return view('apotik.prescriptions', compact('prescriptions'));
-        // $prescriptions = ResepDokter::all()->groupBy('rekam_id');
         $prescriptions = ResepDokter::whereNull('status') // Hanya ambil yang statusnya NULL
         ->get()
         ->groupBy('rekam_id');
-
-        // dump($prescriptions);
 
         return view('apotik.prescriptions', array(
             'title' => "Dashboard Administrator | MiniProject v.1.0",

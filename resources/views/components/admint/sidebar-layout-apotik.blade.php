@@ -48,17 +48,20 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link menu-link @if($firstMenu == "resep") active @endif" href="{{route('apoteker.medicines')}}">
+                            <i class="ri-file-list-3-line"></i> <span data-key="t-forms">Daftar Obat</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link menu-link @if($firstMenu == "myData") active @endif" href="#sidebarForms" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarForms">
-                            <i class="ri-file-list-3-line"></i> <span data-key="t-forms">Data Obat</span>
+                            <i class="ri-asterisk"></i> <span data-key="t-dashboards">Stok Obat</span>
                         </a>
                         <div class="menu-dropdown navbar-expand @if($firstMenu != "myData") collapse @endif" id="sidebarForms">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="#" class="nav-link @if($secondMenu == "stock") active @endif" data-key="t-basic-elements">Input Stock
                                         Obat</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{route('apoteker.medicines')}}" class="nav-link @if($secondMenu == "golongan") active @endif" data-key="t-form-select"> Data Obat (API) </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link @if($secondMenu == "obat") active @endif" data-key="t-checkboxs-radios">Stock Opname Obat</a>
