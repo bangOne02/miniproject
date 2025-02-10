@@ -59,8 +59,8 @@
     <div class="container">
         <div class="header">
             <h1>RESEP RAWAT JALAN</h1>
-            <p>RSUP. DR. Wahidin Sudirohusodo</p>
-            <p>Jalan Perintis Kemerdekaan Km. 11 Tamalanrea</p>
+            <p>Klinik Arafah Anwar Medika</p>
+            <p>l. Sawo No.2, Sukadono, Sukodono, Kec. Sukodono, Kabupaten Sidoarjo, Jawa Timur 61258</p>
         </div>
         <div class="content">
         <p class="info"><strong>ID Transaksi:</strong> {{ $transaction_id }}</p>
@@ -107,7 +107,7 @@
             </div>
         </div>
         <div class="content" style="text-align: right;">
-            <p>MAKASSAR, 11-09-2023 10:02:41</p>
+            <p>SIDOARJO, 11-09-2023 10:02:41</p>
         </div>
     </div>
 </body>
