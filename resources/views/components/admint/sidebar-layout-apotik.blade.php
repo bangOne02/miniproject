@@ -58,7 +58,7 @@
                                         Obat</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link @if($secondMenu == "golongan") active @endif" data-key="t-form-select"> Data Obat </a>
+                                    <a href="{{route('apoteker.medicines')}}" class="nav-link @if($secondMenu == "golongan") active @endif" data-key="t-form-select"> Data Obat (API) </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link @if($secondMenu == "obat") active @endif" data-key="t-checkboxs-radios">Stock Opname Obat</a>

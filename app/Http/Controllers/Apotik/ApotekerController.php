@@ -17,22 +17,47 @@ class ApotekerController extends Controller
     public function authenticate()
     {
         $response = Http::post("$this->apiBase/auth", [
-            'email' => 'arfi.afianto@rsdeltasurya.com',
-            'password' => '081234567890'
+            'email' => 'formyapp2@gmail.com',
+            'password' => '085722097053'
         ]);
-
+    
+        if ($response->failed()) {
+            return false; 
+        }
+    
         $data = $response->json();
+    
+        if (!isset($data['access_token'])) {
+            return false;
+        }
+    
         session(['bearer_token' => $data['access_token']]);
-        return redirect()->route('apoteker.medicines');
+    
+        return true; 
     }
 
     public function getMedicines()
     {
         $token = session('bearer_token');
+
+        if (!$token) {
+            $authResponse = $this->authenticate();
+
+            if (!$authResponse) {
+                return response()->json(['error' => 'Autentikasi gagal. Silakan coba lagi.'], 401);
+            }
+
+            $token = session('bearer_token');
+        }
+
         $response = Http::withToken($token)->get("$this->apiBase/medicines");
         
         $medicines = $response->json()['medicines'] ?? [];
-        return view('apoteker.medicines', compact('medicines'));
+        return view('apotik.medicines',  array(
+            'title' => "Dashboard Administrator | MiniProject v.1.0",
+            'firstMenu' => 'dashboard',
+            'secondMenu' => 'dashboard',
+        ), compact('medicines'));
     }
 
     public function getMedicinePrice($medicineId)
@@ -75,25 +100,7 @@ class ApotekerController extends Controller
 
     public function generateReceipt($id)
     {
-        // $prescription = ResepDokter::findOrFail($id);
-
-        // // Ambil semua obat yang memiliki rekam_id sesuai dengan $id
-        // $medicines = ResepDokter::where('rekam_id', $id)->get();
-
-        // dump($prescription);
-        // dump($medicines);
-        // $prescription = ResepDokter::findOrFail($id);
-
-        // $data = [
-        //     'transaction_id' => $id,
-        //     'date' => now(),
-        //     'patient_name' => $prescription->nama_pasien,
-        //     'medicine' => $prescription->obat,
-        //     'total' => 50000 // Contoh total harga, bisa diambil dari tabel harga obat
-        // ];
-        
-        // $pdf = PDF::loadView('apotik.receipt', $data);
-        // return $pdf->download('resi_pembayaran.pdf');
+       
         $prescription = ResepDokter::where('rekam_id', $id)->with('obat')->get();
         $data = [
             'transaction_id' => $id,
