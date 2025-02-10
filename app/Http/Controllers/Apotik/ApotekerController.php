@@ -119,6 +119,17 @@ class ApotekerController extends Controller
         return redirect()->route('apoteker.prescriptions')->with('success', 'Pembayaran berhasil diproses.');
     }
 
+    public function processCost(Request $request)
+    {
+        // Proses pembayaran resep
+        $prescription_id = $request->input('prescription_id'); // Ambil rekam_id dari form
+
+        // Update semua resep dokter yang memiliki rekam_id ini
+        ResepDokter::where('id', $prescription_id)->update(['jumlah' => $request->input('harga')]);
+
+        return redirect()->route('apoteker.prescriptions')->with('success', 'Update harga berhasil diproses.');
+    }
+
     public function generateReceipt($id)
     {
        
@@ -131,12 +142,12 @@ class ApotekerController extends Controller
                 return [
                     'nama_obat' => $item->obat->name,
                     'jumlah' => $item->jumlah,
-                    'harga' => $item->obat->price,
+                    'harga' => $item->jumlah,
                     'dosis' => $item->dosis,
                     'aturan_pakai' => $item->aturan_pakai
                 ];
             }),
-            'total' => $prescription->sum(fn ($item) => $item->jumlah * $item->obat->price)
+            'total' => $prescription->sum(fn ($item) => $item->jumlah)
         ];
 
         $pdf = PDF::loadView('apotik.receipt', $data);

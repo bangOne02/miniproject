@@ -105,6 +105,7 @@ Route::group(['middleware' => ['web', 'auth', 'roles']], function () {
         Route::get('/apoteker/medicines', [ApotikResep::class, 'getMedicines'])->name('apoteker.medicines');
         Route::get('/apoteker/medicines/{id}/prices', [ApotikResep::class, 'getMedicinePrice'])->name('apoteker.medicinePrice');
         Route::get('/apoteker/prescriptions', [ApotikResep::class, 'listPrescriptions'])->name('apoteker.prescriptions');
+        Route::post('/apoteker/prescriptions/cost', [ApotikResep::class, 'processCost'])->name('apoteker.processCost');
         Route::post('/apoteker/prescriptions/payment', [ApotikResep::class, 'processPayment'])->name('apoteker.processPayment');
         Route::get('/apoteker/prescriptions/{id}/receipt', [ApotikResep::class, 'generateReceipt'])->name('apoteker.generateReceipt');
     });

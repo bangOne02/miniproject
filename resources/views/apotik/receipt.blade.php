@@ -86,7 +86,7 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $item['nama_obat'] }}</td>
-                        <td>{{ $item['jumlah'] }}</td>
+                        <td>1</td>
                         <td>{{ $item['harga'] }}</td>
                     </tr>
                     @endforeach
