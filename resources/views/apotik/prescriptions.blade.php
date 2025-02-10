@@ -72,7 +72,10 @@
                                     <tr>
                                         <td><?php echo $i++; ?></td>
                                         <td style="word-wrap: break-word; max-width: 200px;">
-                                            {{ $prescription->obat }}
+                                            Nama Obat : {{ $prescription->obat->name }} , Type Obat : {{ $prescription->obat->type }} , Harga Obat : {{ $prescription->obat->price }}  
+
+
+                                            <!-- {{ $prescription->obat }} ::  {{ $prescription->obat->name }} -->
                                         </td>
                                     </tr>
                                 @endforeach

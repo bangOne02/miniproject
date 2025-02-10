@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 // use Barryvdh\DomPDF\Facade as PDF;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use App\Models\ResepDokter;
+use App\Models\Rekam;
 
 class ApotekerController extends Controller
 {
@@ -74,16 +75,42 @@ class ApotekerController extends Controller
 
     public function generateReceipt($id)
     {
-        $prescription = ResepDokter::findOrFail($id);
+        // $prescription = ResepDokter::findOrFail($id);
 
+        // // Ambil semua obat yang memiliki rekam_id sesuai dengan $id
+        // $medicines = ResepDokter::where('rekam_id', $id)->get();
+
+        // dump($prescription);
+        // dump($medicines);
+        // $prescription = ResepDokter::findOrFail($id);
+
+        // $data = [
+        //     'transaction_id' => $id,
+        //     'date' => now(),
+        //     'patient_name' => $prescription->nama_pasien,
+        //     'medicine' => $prescription->obat,
+        //     'total' => 50000 // Contoh total harga, bisa diambil dari tabel harga obat
+        // ];
+        
+        // $pdf = PDF::loadView('apotik.receipt', $data);
+        // return $pdf->download('resi_pembayaran.pdf');
+        $prescription = ResepDokter::where('rekam_id', $id)->with('obat')->get();
         $data = [
             'transaction_id' => $id,
             'date' => now(),
-            'patient_name' => $prescription->nama_pasien,
-            'medicine' => $prescription->obat,
-            'total' => 50000 // Contoh total harga, bisa diambil dari tabel harga obat
+            'patient_name' => Rekam::where('id', $id)->first()->pasien->nama_lengkap,
+            'medicine' => $prescription->map(function ($item) {
+                return [
+                    'nama_obat' => $item->obat->name,
+                    'jumlah' => $item->jumlah,
+                    'harga' => $item->obat->price,
+                    'dosis' => $item->dosis,
+                    'aturan_pakai' => $item->aturan_pakai
+                ];
+            }),
+            'total' => $prescription->sum(fn ($item) => $item->jumlah * $item->obat->price)
         ];
-        
+
         $pdf = PDF::loadView('apotik.receipt', $data);
         return $pdf->download('resi_pembayaran.pdf');
     }

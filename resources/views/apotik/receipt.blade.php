@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,9 +62,9 @@
             <p>Jl. Sawo No.2, Sukadono, Sukodono, Kec. Sukodono, Kabupaten Sidoarjo, Jawa Timur 61258</p>
         </div>
         <div class="content">
-        <p class="info"><strong>ID Transaksi:</strong> {{ $transaction_id }}</p>
-            <p>Nama Pasien: </p>
-            <p>Nomor RM: </p>
+            <p class="info"><strong>ID Transaksi:</strong> {{ $transaction_id }}</p>
+            <p><strong>Nama Pasien:</strong> {{ $patient_name }}</p>
+            <p><strong>Nomor RM:</strong> {{ $patient_rm ?? '-' }}</p>
             <p>Apotik / Depo: Apotek Rawat Jalan Poliklinik Lama</p>
             <p class="info"><strong>Tanggal:</strong> {{ $date }}</p>
         </div>
@@ -78,21 +77,20 @@
                     <tr>
                         <th>No.</th>
                         <th>Nama Obat</th>
-                        <th>Jml. Resep</th>
-                        <th>Jml. Layanan</th>
-                        <th>Sisa Bon RS</th>
+                        <th>Jml</th>
+                        <th>Harga</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($medicine as $index => $item)
                     <tr>
-                        <td>1</td>
-                        <td>AmLODIPine Tab 10 mg</td>
-                        <td>10.00</td>
-                        <td>3.00</td>
-                        <td>2.00</td>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $item['nama_obat'] }}</td>
+                        <td>{{ $item['jumlah'] }}</td>
+                        <td>{{ $item['harga'] }}</td>
                     </tr>
+                    @endforeach
                 </tbody>
-    
             </table>
         </div>
         <div class="footer">
@@ -107,7 +105,8 @@
             </div>
         </div>
         <div class="content" style="text-align: right;">
-            <p>SIDOARJO, 11-09-2023 10:02:41</p>
+            <p>SIDOARJO, {{ now()->format('d-m-Y H:i:s') }}</p>
         </div>
     </div>
 </body>
+</html>
