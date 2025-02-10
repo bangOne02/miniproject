@@ -63,10 +63,36 @@ class ApotekerController extends Controller
     public function getMedicinePrice($medicineId)
     {
         $token = session('bearer_token');
+
+        if (!$token) {
+            if (!$this->authenticate()) {
+                return response()->json(['error' => 'Autentikasi gagal. Silakan coba lagi.'], 401);
+            }
+            $token = session('bearer_token');
+        }
+
         $response = Http::withToken($token)->get("$this->apiBase/medicines/$medicineId/prices");
-        
-        $prices = $response->json()['prices'] ?? [];
-        return response()->json($prices);
+
+        if ($response->failed()) {
+            return response()->json(['error' => 'Gagal mengambil harga obat.'], $response->status());
+        }
+
+        $data = $response->json();
+        $prices = $data['prices'] ?? [];
+
+        $formattedPrices = array_map(function ($price) {
+            return [
+                'id' => $price['id'],
+                'unit_price' => number_format($price['unit_price'], 0, ',', '.'),
+                'start_date' => $price['start_date']['formatted'],
+                'end_date' => $price['end_date']['formatted'],
+            ];
+        }, $prices);
+
+        return response()->json([
+            'medicine_id' => $medicineId,
+            'prices' => $formattedPrices
+        ]);
     }
 
     public function listPrescriptions()
