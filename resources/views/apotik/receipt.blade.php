@@ -60,7 +60,7 @@
         <div class="header">
             <h1>RESEP RAWAT JALAN</h1>
             <p>Klinik Arafah Anwar Medika</p>
-            <p>l. Sawo No.2, Sukadono, Sukodono, Kec. Sukodono, Kabupaten Sidoarjo, Jawa Timur 61258</p>
+            <p>Jl. Sawo No.2, Sukadono, Sukodono, Kec. Sukodono, Kabupaten Sidoarjo, Jawa Timur 61258</p>
         </div>
         <div class="content">
         <p class="info"><strong>ID Transaksi:</strong> {{ $transaction_id }}</p>
