@@ -37,7 +37,7 @@ class DokterController extends Controller
         }
 
         return view('admin.dokter.index', array(
-            'title' => "Dashboard Administrator | MyKlinik v.1.0",
+            'title' => "Dashboard Administrator | MiniProject v.1.0",
             'firstMenu' => 'karyawan',
             'secondMenu' => 'dokter',
         ));
@@ -46,7 +46,7 @@ class DokterController extends Controller
     public function create()
     {
         return view('admin.dokter.add', array(
-            'title' => "Dashboard Administrator | MyKlinik v.1.0",
+            'title' => "Dashboard Administrator | MiniProject v.1.0",
             'firstMenu' => 'karyawan',
             'secondMenu' => 'dokter',
             'dataPoliklinik' => $this->poliklinik
@@ -73,7 +73,7 @@ class DokterController extends Controller
             try{
                 $user = User::with('karyawandokter')->findOrFail(decrypt($id));
                 return view('admin.dokter.edit', array(
-                    'title' => "Dashboard Administrator | MyKlinik v.1.0",
+                    'title' => "Dashboard Administrator | MiniProject v.1.0",
                     'firstMenu' => 'karyawan',
                     'secondMenu' => 'dokter',
                     'dataPoliklinik' => $this->poliklinik,

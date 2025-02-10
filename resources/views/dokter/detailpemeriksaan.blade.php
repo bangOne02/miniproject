@@ -49,9 +49,10 @@
                                 <li class="list-group-item">Umur : {{$dataPasien->pasien->age ?? "0"}} Tahun</li>
                                 <li class="list-group-item">Tekanan Darah : {{$dataPasien->tekanan_darah ?? "0"}}mm/g
                                 </li>
-                                <li class="list-group-item">Rate : {{$dataPasien->rate ?? "0"}} </li>
-                                <li class="list-group-item">Suhu : {{$dataPasien->suhu_badan ?? "0"}} Celcius</li>
+                                <li class="list-group-item">Heart Rate : {{$dataPasien->rate ?? "0"}} </li>
+                                <li class="list-group-item">Suhu Tubuh : {{$dataPasien->suhu_badan ?? "0"}} Celcius</li>
                                 <li class="list-group-item">Tinggi Badan : {{$dataPasien->tinggi_badan ?? "0"}} cm</li>
+                                <li class="list-group-item">Berat Badan : {{$dataPasien->berat_badan ?? "0"}} cm</li>
                             </ul>
                         </div>
                     </div>

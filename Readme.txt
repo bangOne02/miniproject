@@ -6,7 +6,7 @@
 ## Panduan Installasi Web Laravel
 - Clone Repository
 - Buka Terminal dan ketik composer install
-- Buat database kosong dengan nama: myklinik
+- Buat database kosong dengan nama: MiniProject
 - Copy env.example dan rename dengan nama .env
 - ketik terminal: php artisan key:generate
 - ketik terminal: php artisan migrate:fresh --seed

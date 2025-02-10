@@ -56,7 +56,7 @@ class ApotekerController extends Controller
         // dump($prescriptions);
 
         return view('apotik.prescriptions', array(
-            'title' => "Dashboard Administrator | MyKlinik v.1.0",
+            'title' => "Dashboard Administrator | MiniProject v.1.0",
             'firstMenu' => 'dashboard',
             'secondMenu' => 'dashboard',
         ), ['groupedPrescriptions' => $prescriptions]);

@@ -263,14 +263,14 @@
 
                                 <div class="row mt-2">
                                     <div class="col-lg-12">
-                                        <label for="rate" class="form-label">RATE <span
+                                        <label for="rate" class="form-label">HEART RATE <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" id="rate" name="rate" class="form-control @if($errors->has('rate')) is-invalid @endif" placeholder="x/min" value="{{old('rate')}}" maxlength="3">
                                     </div>
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-lg-12">
-                                        <label for="suhu_badan" class="form-label">SUHU <span
+                                        <label for="suhu_badan" class="form-label">SUHU TUBUH <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" id="suhu_badan" name="suhu_badan" class="form-control @if($errors->has('suhu_badan')) is-invalid @endif" placeholder="*C" value="{{old('suhu_badan')}}" maxlength="3">
                                     </div>

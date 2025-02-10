@@ -37,7 +37,7 @@ class ObatController extends Controller
         }
 
         return view('admin.obat', array(
-            'title' => "Dashboard Administrator | MyKlinik v.1.0",
+            'title' => "Dashboard Administrator | MiniProject v.1.0",
             'firstMenu' => 'myData',
             'secondMenu' => 'obat',
         ));
@@ -50,7 +50,7 @@ class ObatController extends Controller
         $produsen = Produsen::OrderBy('name','ASC')->get();
         $obat = Obat::count();
         return view('admin.addobat', array(
-            'title' => "Dashboard Administrator | MyKlinik v.1.0",
+            'title' => "Dashboard Administrator | MiniProject v.1.0",
             'firstMenu' => 'myData',
             'secondMenu' => 'obat',
             'optionKategori' => $kategori,
@@ -85,7 +85,7 @@ class ObatController extends Controller
                 $produsen = Produsen::OrderBy('name','ASC')->get();
                 if($dataObat != null || $dataObat = ""){
                     return view('admin.editobat', array(
-                        'title' => "Dashboard Administrator | MyKlinik v.1.0",
+                        'title' => "Dashboard Administrator | MiniProject v.1.0",
                         'firstMenu' => 'myData',
                         'secondMenu' => 'obat',
                         'optionKategori' => $kategori,
