@@ -10,6 +10,7 @@
 - Copy env.example dan rename dengan nama .env
 - ketik terminal: php artisan key:generate
 - ketik terminal: php artisan migrate:fresh --seed
+- ketik terminal: php artisan storage:link
 - ketik terminal: php artisan serve
 
 ## Info Login:
